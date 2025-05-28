@@ -1,0 +1,19 @@
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db_name: blog
+  username: root
+  password: 123456
+  max_idle_conns: 10
+  max_open_conns: 100
+  #默认info
+  log_mode: info
+system:
+  host: 0.0.0.0
+  port: 8081
+  env: release
+  router_prefix: api
+  use_multipoint: true
+  sessions_secret: "5ZOH5ZOH5ZOH5ZOH5ZOH5ZOH5ZOH5ZOH"
+  oss_type: local
