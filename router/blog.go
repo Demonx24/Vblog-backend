@@ -13,5 +13,10 @@ func (u *BlogRouter) InitBlogRouter(Router *gin.RouterGroup) {
 	blogApi := api.ApiGroupApp.BlogApi
 	{
 		blogRouter.GET("bloggerid", blogApi.BloggerID)
+		blogRouter.POST("createblog", blogApi.CreateBlog)
+		blogRouter.DELETE("deleteblog", blogApi.DeleteBlog)
+		blogRouter.PUT("updateblog", blogApi.UpdateBlog)
+		blogRouter.GET("blogByPage", blogApi.BlogByPage)
+		blogRouter.GET("getCard1", blogApi.GetCard1)
 	}
 }
