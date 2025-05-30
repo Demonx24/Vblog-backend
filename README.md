@@ -4,6 +4,8 @@ Vblog-backend
 前端链接https://github.com/hibichann/Vblog-frontend
 感谢前辈开源
 
+修改后的前端地址[Demonx24/Vblog-前端](https://github.com/Demonx24/Vblog-frontend#)
+
 ### 5.30 
 
 大部分接口以及重构，只剩下相册，端午节了可能会去写新的项目，这个会陆陆续续完善，之后会添加jwt，es，redis等
