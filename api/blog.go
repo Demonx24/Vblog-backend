@@ -60,11 +60,13 @@ func (BlogApi *BlogApi) UpdateBlog(c *gin.Context) {
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		response.FailWithMessage("参数错误", c)
+		return
 	}
 	b := database.Blog{Id: req.BlogId, Title: req.Title, Content: req.Content, Class: req.Class}
 	err = blogService.UpdateBlog(b)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
+		return
 	}
 	response.OkWithMessage("更新成功", c)
 }
@@ -91,4 +93,30 @@ func (BlogApi *BlogApi) GetCard1(c *gin.Context) {
 		return
 	}
 	response.OkWithData(card1, c)
+}
+func (BlogApi *BlogApi) GetCard4(c *gin.Context) {
+
+	blogs, err := blogService.GetCard4()
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.OkWithData(blogs, c)
+}
+func (BlogApi *BlogApi) GetArchive(c *gin.Context) {
+
+	blogs, err := blogService.GetArchive()
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.OkWithData(blogs, c)
+}
+func (BlogApi *BlogApi) GetIndex(c *gin.Context) {
+	blogs, err := blogService.GetIndex()
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.OkWithData(blogs, c)
 }

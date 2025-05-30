@@ -8,6 +8,7 @@ import (
 	"github.com/Demonx24/Vblog-backend/model/request"
 	"github.com/Demonx24/Vblog-backend/utils"
 	"gorm.io/gorm"
+	"sort"
 	"time"
 )
 
@@ -27,7 +28,7 @@ func (blogService *BlogService) BloggerId(blog database.Blog) (database.Blog, er
 }
 func (blogService *BlogService) CreateBlog(blog database.Blog) (database.Blog, error) {
 	db := global.DB
-	blog.Createdate = time.Now().Format("2006-01-02")
+	blog.Createdate = time.Now()
 	blog.Status = 1
 	blog.Lang = "cn"
 	if err := db.Create(&blog).Error; err != nil {
@@ -50,8 +51,8 @@ func (blogService *BlogService) DeleteBlog(blog database.Blog) error {
 }
 func (blogService *BlogService) UpdateBlog(blog database.Blog) error {
 	db := global.DB
-	blog.Createdate = time.Now().Format("2006-01-02")
-	if err := db.Model(&blog).Updates(blog).Error; err != nil {
+	blog.Createdate = time.Now()
+	if err := db.Model(&blog).Where("id=?", blog.Id).Updates(blog).Error; err != nil {
 		return err
 	}
 	return nil
@@ -89,4 +90,62 @@ func (blogService *BlogService) GetCard1(card1 database.Card1) (database.Card1, 
 	}
 
 	return card1, nil
+}
+func (blogService *BlogService) GetCard4() ([]database.Blog, error) {
+	db := global.DB
+
+	var blogs []database.Blog
+	err := db.Where("status = ? AND lang = ?", 1, "cn").
+		Order("createdate DESC").
+		Limit(5).
+		Find(&blogs).Error
+	if err != nil {
+		return []database.Blog{}, err
+	}
+
+	return blogs, nil
+}
+func (blogService *BlogService) GetArchive() (*other.ArchiveResult, error) {
+	var blogs []database.Blog
+	db := global.DB
+	err := db.Where("lang = ?", "cn").
+		Order("createdate ASC").
+		Find(&blogs).Error
+	if err != nil {
+		return nil, err
+	}
+
+	blogGroups := make(map[string][]database.Blog)
+	for _, blog := range blogs {
+		yearMonth := blog.Createdate.Format("2006-01")
+		blogGroups[yearMonth] = append(blogGroups[yearMonth], blog)
+	}
+
+	for _, group := range blogGroups {
+		sort.Slice(group, func(i, j int) bool {
+			return group[i].Createdate.After(group[j].Createdate)
+		})
+	}
+
+	var total int64
+	err = db.Model(&database.Blog{}).Where("lang = ?", "cn").Count(&total).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &other.ArchiveResult{
+		BlogGroups: blogGroups,
+		Total:      total,
+	}, nil
+}
+func (blogService *BlogService) GetIndex() ([]database.Blog, error) {
+	var blogs []database.Blog
+	db := global.DB
+	err := db.
+		Where("status = ? AND lang = ?", 1, "cn").
+		Order("createdate desc").
+		Limit(10).
+		Find(&blogs).Error
+
+	return blogs, err
 }

@@ -11,6 +11,6 @@ func (u *LinkRouter) InitLinkRouter(Router *gin.RouterGroup) {
 	linkRouter := Router.Group("link")
 	linkApi := api.ApiGroupApp.LinkApi
 	{
-		linkRouter.GET("getalllinks", linkApi.GetAllLinks)
+		linkRouter.GET("getLink", linkApi.GetAllLinks)
 	}
 }

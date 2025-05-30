@@ -1,5 +1,7 @@
 package request
 
+import "github.com/Demonx24/Vblog-backend/model/database"
+
 type BloggerId struct {
 	BlogId uint `form:"id"`
 }
@@ -26,4 +28,8 @@ type BlogList struct {
 	Createdate string `json:"createdate" form:"createdate"	`
 	Class      int    `json:"class" form:"class"`
 	PageInfo
+}
+type ArchiveResult struct {
+	BlogGroups map[string][]database.Blog
+	Total      int
 }

@@ -18,5 +18,8 @@ func (u *BlogRouter) InitBlogRouter(Router *gin.RouterGroup) {
 		blogRouter.PUT("updateblog", blogApi.UpdateBlog)
 		blogRouter.GET("blogByPage", blogApi.BlogByPage)
 		blogRouter.GET("getCard1", blogApi.GetCard1)
+		blogRouter.GET("getCard4", blogApi.GetCard4)
+		blogRouter.GET("getArchive", blogApi.GetArchive)
+		blogRouter.GET("getIndex", blogApi.GetIndex)
 	}
 }
