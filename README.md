@@ -10,16 +10,16 @@ Vblog-backend
 
 前端感觉被我改的面目全非了哈哈哈哈哈，不想再去修改
 
-![](E:\go代码\Vblog-backend\images\标签.jpg)
+![](.\images\标签.jpg)
 
-![分类](E:\go代码\Vblog-backend\images\分类.jpg)
+![分类](.\images\分类.jpg)
 
-![归档](E:\go代码\Vblog-backend\images\归档.jpg)
+![归档](.\images\归档.jpg)
 
-![上传](E:\go代码\Vblog-backend\images\上传.jpg)
+![上传](.\images\上传.jpg)
 
-![首页1](E:\go代码\Vblog-backend\images\首页1.jpg)
+![首页1](.\images\首页1.jpg)
 
-![首页2](E:\go代码\Vblog-backend\images\首页2.jpg)
+![首页2](.\images\首页2.jpg)
 
-![友链](E:\go代码\Vblog-backend\images\友链.jpg)
+![友链](.\images\友链.jpg)
