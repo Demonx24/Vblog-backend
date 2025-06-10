@@ -32,3 +32,6 @@ func FailWithMessage(message string, c *gin.Context) {
 func OkWithData(data interface{}, c *gin.Context) {
 	Result(SUCCESS, data, "success", c)
 }
+func NoAuth(message string, c *gin.Context) {
+	Result(ERROR, gin.H{"reload": true}, message, c)
+}

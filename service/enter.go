@@ -5,6 +5,7 @@ type ServiceGroup struct {
 	TagService
 	LinkService
 	ClassifyService
+	JwtService
 }
 
 var ServiceGroupApp = new(ServiceGroup)
