@@ -17,3 +17,7 @@ system:
   use_multipoint: true
   sessions_secret: "5ZOH5ZOH5ZOH5ZOH5ZOH5ZOH5ZOH5ZOH"
   oss_type: local
+redis:
+  address: 127.0.0.1:6379
+  password: ""
+  db: 0

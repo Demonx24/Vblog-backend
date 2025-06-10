@@ -8,6 +8,9 @@ import (
 
 func main() {
 	global.Config = core.InitConfig()
+	global.Log = core.InitLogger()
+	initialize.OtherInit()
+	global.Redis = initialize.ConnectRedis()
 	global.DB = initialize.InitGorm()
 	core.RunServer()
 
